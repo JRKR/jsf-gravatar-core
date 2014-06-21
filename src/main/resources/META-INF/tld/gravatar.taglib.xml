@@ -3,7 +3,7 @@
         "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
         "http://java.sun.com/dtd/facelet-taglib_1_0.dtd">
 <facelet-taglib>
-    <namespace>http://jrkr.me/tags</namespace>
+    <namespace>http://jrkr.me/jsf/core/gravatar</namespace>
     <tag>
         <tag-name>gravatar</tag-name>
         <component>

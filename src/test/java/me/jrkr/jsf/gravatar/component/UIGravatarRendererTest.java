@@ -1,4 +1,4 @@
-package gravatar.component;
+package me.jrkr.jsf.gravatar.component;
 
 
 import me.jrkr.jsf.gravatar.component.UIGravatar;

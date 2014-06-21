@@ -5,3 +5,5 @@ jsfgravatar-core.iml
 jsf-gravatar-core.iml
 src/main/main.iml
 src/test/test.iml
+src/main/resources/rebel.xml
+jsf-gravatar--core.iml
