@@ -5,15 +5,14 @@
 
 package me.jrkr.jsf.gravatar.common;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
+
 public enum GravatarRating {
 
     GENERAL_AUDIENCES("g"),
-
     PARENTAL_GUIDANCE_SUGGESTED("pg"),
-
     RESTRICTED("r"),
-
     XPLICIT("x");
 
     private final String code;
@@ -22,19 +21,16 @@ public enum GravatarRating {
         this.code = code;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public static GravatarRating fromCode(String code)
-    {
-        for(Iterator iterator = Arrays.asList(values()).iterator(); iterator.hasNext();)
-        {
-            GravatarRating obj = (GravatarRating)iterator.next();
-            if(obj.getCode().equalsIgnoreCase(code))
+    public static GravatarRating fromCode(String code) {
+        for (Iterator iterator = Arrays.asList(values()).iterator(); iterator.hasNext(); ) {
+            GravatarRating obj = (GravatarRating) iterator.next();
+            if (obj.getCode().equalsIgnoreCase(code))
                 return obj;
         }
-
         return null;
+    }
+
+    public String getCode() {
+        return code;
     }
 }

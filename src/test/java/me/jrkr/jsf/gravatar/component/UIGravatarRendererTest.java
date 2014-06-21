@@ -11,7 +11,7 @@ import java.io.StringWriter;
 
 public class UIGravatarRendererTest extends AbstractJsfTestCase
 {
-    private static final String PLAIN_TEST_RESULT = "<img src=\"http://www.gravatar.com/avatar/e733d508cbe602617cb84a1087b612d1.jpg\"/>";
+    private static final String PLAIN_TEST_RESULT = "<img src=\"http://www.gravatar.com/avatar/e733d508cbe602617cb84a1087b612d1.jpg?s=30\"/>";
     private MockResponseWriter writer ;
     private UIGravatar gravatar;
 
@@ -26,6 +26,7 @@ public class UIGravatarRendererTest extends AbstractJsfTestCase
 
         gravatar = new UIGravatar();
         gravatar.setEmail("me@jrkr.me");
+        gravatar.setSize("30");
 
         writer = new MockResponseWriter(new StringWriter(), "text/html", null);
         facesContext.setResponseWriter(writer);
