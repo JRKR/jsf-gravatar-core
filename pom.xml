@@ -3,6 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jsf-gravatar-core</artifactId>
+    <groupId>me.jrkr</groupId>
     <packaging>jar</packaging>
     <name>JRKR JSF Gravatar Core Library</name>
     <version>1.0</version>
