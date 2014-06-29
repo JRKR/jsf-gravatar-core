@@ -6,7 +6,13 @@
     <groupId>me.jrkr</groupId>
     <packaging>jar</packaging>
     <name>JRKR JSF Gravatar Core Library</name>
-    <version>1.0</version>
+
+    <parent>
+        <groupId>me.jrkr</groupId>
+        <artifactId>jsf-gravatar-parent</artifactId>
+        <version>1.0</version>
+        <relativePath>../jsf-gravatar-parent/pom.xml</relativePath>
+    </parent>
 
      <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -97,6 +103,5 @@
         </dependency>
 
     </dependencies>
-
 
 </project>
