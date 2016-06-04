@@ -1,78 +1,55 @@
 package me.jrkr.jsf.gravatar.component;
 
-import com.sun.faces.RIConstants;
-import com.sun.faces.renderkit.Attribute;
-import com.sun.faces.renderkit.AttributeManager;
-import com.sun.faces.renderkit.RenderKitUtils;
-import com.sun.faces.renderkit.html_basic.ImageRenderer;
-import org.apache.commons.lang.StringUtils;
-
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.render.FacesRenderer;
+import javax.faces.render.Renderer;
 import java.io.IOException;
-import java.util.Map;
-import java.util.logging.Level;
 
-@FacesRenderer(rendererType = UIGravatar.DEFAULT_RENDERER_TYPE, componentFamily = UIGravatarRenderer.UIGRAVATAR_RENDERER_COMPONENT_FAMILY)
-public class UIGravatarRenderer extends ImageRenderer {
+@FacesRenderer(rendererType = UIGravatarRenderer.RENDERER_TYPE, componentFamily = UIGravatar.COMPONENT_FAMILY)
+public class UIGravatarRenderer extends Renderer {
 
-    public static final String UIGRAVATAR_RENDERER_COMPONENT_FAMILY = "javax.faces.Graphic";
+    public static final String RENDERER_TYPE = "me.jrkr.uigravatar.Renderer";
 
-    private static final Attribute[] ATTRIBUTES = AttributeManager.getAttributes(AttributeManager.Key.GRAPHICIMAGE);
-
-    public UIGravatarRenderer() {
+    @Override
+    public boolean getRendersChildren() {
+        return true;
     }
 
-    public void encodeBegin(FacesContext context, UIComponent component)
-            throws IOException {
-        rendererParamsNotNull(context, component);
-    }
-
-    public void encodeEnd(FacesContext context, UIComponent component)
-            throws IOException {
-        rendererParamsNotNull(context, component);
-        if (!shouldEncode(component))
-            return;
-
+    @Override
+    public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
         ResponseWriter writer = context.getResponseWriter();
-        assert (writer != null);
+        UIGravatar gravatar = (UIGravatar) component;
+        String url = GravatarUtils.getURL(gravatar);
 
-        writer.startElement("img", component);
-        writeIdAttributeIfNecessary(context, writer, component);
+        int size = gravatar.getSize();
 
-        // Configure Gravatar objects here.
-        setupGravatarDetails(component);
+        writer.startElement("img", gravatar);
+        writer.writeAttribute("id", gravatar.getClientId(), "id");
 
-        writer.writeURIAttribute("src", (String) component.getAttributes().get("email"), "email");
+        if (gravatar.isDeferred()) {
+            writer.writeURIAttribute("data-defer-src", url, "email");
+        } else {
+            writer.writeURIAttribute("src", url, "email");
+        }
+        writer.writeAttribute("width", size, "size");
+        writer.writeAttribute("height", size, "size");
+        writer.writeAttribute("alt", " ", "alt");
 
-        if (writer.getContentType().equals(RIConstants.XHTML_CONTENT_TYPE) && null == component.getAttributes().get("alt"))
-            writer.writeAttribute("alt", "", "alt");
+        String tooltip = gravatar.getTooltip();
 
-        RenderKitUtils.renderPassThruAttributes(context, writer, component, ATTRIBUTES);
-        RenderKitUtils.renderXHTMLStyleBooleanAttributes(writer, component);
-        String styleClass;
-        if (null != (styleClass = (String) component.getAttributes().get("styleClass")))
+        if (tooltip != null) {
+            writer.writeAttribute("tooltip", tooltip, "tooltip");
+        }
+
+        String styleClass = gravatar.getStyleClass();
+
+        if (styleClass != null) {
             writer.writeAttribute("class", styleClass, "styleClass");
+        }
+
         writer.endElement("img");
-        if (logger.isLoggable(Level.FINER))
-            logger.log(Level.FINER, (new StringBuilder()).append("End encoding component ").append(component.getId()).toString());
-    }
-
-    private void setupGravatarDetails(UIComponent component) {
-        Map attributes = component.getAttributes();
-        UIGravatar gravObj = new UIGravatar();
-        if (StringUtils.isNotBlank((String) attributes.get("email")))
-            gravObj.setEmail((String) attributes.get("email"));
-        if (StringUtils.isNotBlank((String) attributes.get("size")))
-            gravObj.setSize((String) attributes.get("size"));
-        if (StringUtils.isNotBlank((String) attributes.get("rating")))
-            gravObj.setRating((String) attributes.get("rating"));
-        if (StringUtils.isNotBlank((String) attributes.get("defaultImg")))
-            gravObj.setDefaultImg((String) attributes.get("defaultImg"));
-
-        attributes.put("email", gravObj.getGravUrl());
     }
 
 }

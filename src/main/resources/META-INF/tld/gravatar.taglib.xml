@@ -7,7 +7,7 @@
     <tag>
         <tag-name>gravatar</tag-name>
         <component>
-            <component-type>me.jrkr.uigravatar</component-type>
+            <component-type>me.jrkr.uigravatar.UIGravatar</component-type>
             <renderer-type>me.jrkr.uigravatar.renderer</renderer-type>
         </component>
     </tag>
