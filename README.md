@@ -3,6 +3,8 @@ JSF Gravatar Core Jar
 =================
 Release 1.0 21/06/2014
 =================
+<a href='http://home.jrkr.me/jenkins/job/jsf-gravatar'><img src='http://home.jrkr.me/jenkins/buildStatus/icon?job=jsf-gravatar&style=plastic'></a>
+
 
 jsf-component for gravatar with own renderer.
 Extension of graphicImage jsf component.
