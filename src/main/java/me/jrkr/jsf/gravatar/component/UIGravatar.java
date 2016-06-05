@@ -1,19 +1,9 @@
 package me.jrkr.jsf.gravatar.component;
 
-import com.google.common.base.Joiner;
-import com.google.common.hash.Hashing;
 import me.jrkr.jsf.gravatar.common.GravatarImageType;
-import me.jrkr.jsf.gravatar.common.GravatarRating;
 
-import javax.el.ELContext;
-import javax.el.ValueExpression;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.UIComponentBase;
-import javax.faces.component.html.HtmlGraphicImage;
-import javax.faces.context.FacesContext;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
 
 @FacesComponent(value = UIGravatar.COMPONENT_TYPE)
 public class UIGravatar extends UIComponentBase {
@@ -43,11 +33,11 @@ public class UIGravatar extends UIComponentBase {
         getStateHelper().put("rating", rating);
     }
 
-    public String getDefaultImg() {
-        return (String) getStateHelper().eval("defaultImg", GravatarImageType.HTTP_404);
+    public GravatarImageType getDefaultImg() {
+        return (GravatarImageType) getStateHelper().eval("defaultImg", GravatarImageType.HTTP_404);
     }
 
-    public void setDefaultImg(String defaultImg) {
+    public void setDefaultImg(GravatarImageType defaultImg) {
         getStateHelper().put("defaultImg", defaultImg);
     }
 

@@ -13,7 +13,7 @@ public enum GravatarImageType {
 
     private final String code;
 
-    private GravatarImageType(String code) {
+    GravatarImageType(String code) {
         this.code = code;
     }
 
