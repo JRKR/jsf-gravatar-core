@@ -18,12 +18,16 @@ public class UIGravatarRenderer extends Renderer {
     }
 
     @Override
+    public void encodeBegin(FacesContext context, UIComponent component) throws IOException {
+        super.encodeBegin(context, component);
+    }
+
+    @Override
     public void encodeEnd(FacesContext context, UIComponent component) throws IOException {
+        super.encodeEnd(context, component);
         ResponseWriter writer = context.getResponseWriter();
         UIGravatar gravatar = (UIGravatar) component;
-        String url = GravatarUtils.getURL(gravatar);
-
-        int size = gravatar.getSize();
+        String url = gravatar.getURL(gravatar);
 
         writer.startElement("img", gravatar);
         writer.writeAttribute("id", gravatar.getClientId(), "id");
@@ -33,15 +37,9 @@ public class UIGravatarRenderer extends Renderer {
         } else {
             writer.writeURIAttribute("src", url, "email");
         }
+        int size = gravatar.getSize();
         writer.writeAttribute("width", size, "size");
         writer.writeAttribute("height", size, "size");
-        writer.writeAttribute("alt", " ", "alt");
-
-        String tooltip = gravatar.getTooltip();
-
-        if (tooltip != null) {
-            writer.writeAttribute("tooltip", tooltip, "tooltip");
-        }
 
         String styleClass = gravatar.getStyleClass();
 

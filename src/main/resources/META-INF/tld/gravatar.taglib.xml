@@ -1,14 +1,78 @@
 <?xml version="1.0"?>
-<!DOCTYPE facelet-taglib PUBLIC
-        "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
-        "http://java.sun.com/dtd/facelet-taglib_1_0.dtd">
-<facelet-taglib>
+<facelet-taglib xmlns="http://java.sun.com/xml/ns/javaee"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd"
+                version="2.0">
     <namespace>http://jrkr.me/jsf/core/gravatar</namespace>
     <tag>
         <tag-name>gravatar</tag-name>
         <component>
             <component-type>me.jrkr.uigravatar.UIGravatar</component-type>
-            <renderer-type>me.jrkr.uigravatar.renderer</renderer-type>
+            <renderer-type>me.jrkr.uigravatar.Renderer</renderer-type>
         </component>
+        <attribute>
+            <description>
+                The component identifier for this component. This value must be
+                unique within the closest parent component that is a naming
+                container.
+            </description>
+            <name>id</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                Flag indicating whether or not this component should be rendered
+                (during Render Response Phase), or processed on any subsequent
+                form submit. The default value for this property is true.
+            </description>
+            <name>rendered</name>
+            <required>false</required>
+            <type>boolean</type>
+        </attribute>
+        <attribute>
+            <description>
+                Email address to generate for gravatar
+            </description>
+            <name>email</name>
+            <required>true</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                Alternate textual description of the
+                element rendered by this component.
+            </description>
+            <name>alt</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                CSS style(s) to be applied when this component is rendered.
+            </description>
+            <name>style</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                Space-separated list of CSS style class(es) to be applied when
+                this element is rendered. This value must be passed through
+                as the "class" attribute on generated markup.
+            </description>
+            <name>styleClass</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                Advisory title information about markup elements generated
+                for this component.
+            </description>
+            <name>title</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
     </tag>
 </facelet-taglib>
