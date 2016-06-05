@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.io.StringWriter;
 
 public class UIGravatarRendererTest extends AbstractJsfTestCase {
-    private static final String PLAIN_TEST_RESULT = "<img id=\"test\" src=\"http://www.gravatar.com/avatar/e733d508cbe602617cb84a1087b612d1?d=404&amp;s=30\" width=\"30\" height=\"30\" alt=\" \"/>";
+    private static final String PLAIN_TEST_RESULT = "<img id=\"test\" src=\"//www.gravatar.com/avatar/e733d508cbe602617cb84a1087b612d1?d=404&amp;s=30\" width=\"30\" height=\"30\" alt=\" \"/>";
     private MockResponseWriter writer;
     private UIGravatar gravatar;
 
